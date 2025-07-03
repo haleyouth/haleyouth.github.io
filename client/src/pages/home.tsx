@@ -36,7 +36,8 @@ import {
   Facebook,
   Twitter,
   Linkedin,
-  Youtube
+  Youtube,
+  Instagram
 } from "lucide-react";
 
 const Home = () => {
@@ -134,16 +135,14 @@ const Home = () => {
     { icon: Heart, title: "Special Care for Orphans", description: "Supporting vulnerable children and widows with essential care and development programs." },
     { icon: Stethoscope, title: "Community Healthcare", description: "Delivering accessible healthcare programs to underserved communities." },
     { icon: GraduationCap, title: "Quality Education", description: "Educational programs for gifted and less privileged students." },
-    { icon: Wrench, title: "Skill Acquisition", description: "Practical skills training programs for youth development and employability." },
+    { icon: Wrench, title: "Youth Skill Acquisition", description: "Practical skills training programs for youth development and employability." },
     { icon: Briefcase, title: "Career Advisory", description: "Professional career guidance and mentorship for young professionals." },
     { icon: Brain, title: "Educational Consultation", description: "Strategic educational planning and consultation services." },
     { icon: HandHeart, title: "Humanitarian Projects", description: "Community-focused humanitarian initiatives and emergency response." },
     { icon: Globe, title: "Peace Ambassadors", description: "Training youth leaders as peace ambassadors in their communities." },
     { icon: Building, title: "Society Planning", description: "Progressive planning initiatives for sustainable community development." },
-    { icon: Users, title: "Youth Training", description: "Comprehensive career training and youth engagement programs." },
     { icon: TreePine, title: "Environmental Protection", description: "Environmental conservation and community sanitation initiatives." },
-    { icon: FlaskConical, title: "STEM Camp (Girls)", description: "Science, Technology, Engineering & Mathematics programs for teenage girls." },
-    { icon: Computer, title: "Computer Training", description: "Digital literacy and computer skills training programs." },
+    { icon: Computer, title: "STEM Camp (Girls)", description: "Science, Technology, Engineering & Mathematics programs for teenage girls." },
     { icon: Amphora, title: "Cultural Heritage", description: "Preservation and development of cultural heritage and traditions." }
   ];
 
@@ -362,10 +361,10 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Counter target={500} label="Youth Trained" icon={School} />
-            <Counter target={100} label="Orphans Supported" icon={Heart} />
-            <Counter target={20} label="Projects Completed" icon={Variable} />
-            <Counter target={15} label="Partner Organizations" icon={Handshake} />
+            <Counter target={200} label="Youth Trained" icon={School} />
+            <Counter target={85} label="Orphans Supported" icon={Heart} />
+            <Counter target={15} label="Projects Completed" icon={Variable} />
+            <Counter target={8} label="Partner Organizations" icon={Handshake} />
           </div>
         </div>
       </section>
@@ -437,8 +436,8 @@ const Home = () => {
                   </TooltipTrigger>
                   <TooltipContent>
                     <div className="text-xs">
-                      <div>Bank: First Bank Nigeria</div>
-                      <div>Account: 1234567890</div>
+                      <div>Bank: Guaranty Trust Bank</div>
+                      <div>Account: 0617009307</div>
                       <div>Name: Haleyouth Foundation</div>
                     </div>
                   </TooltipContent>
@@ -486,7 +485,7 @@ const Home = () => {
               <CardContent className="p-6">
                 <div className="flex items-center mb-3">
                   <span className="bg-secondary text-white px-3 py-1 rounded-full text-xs font-medium">INTERNSHIPS</span>
-                  <span className="text-muted-foreground text-sm ml-auto">Dec 12, 2024</span>
+                  <span className="text-muted-foreground text-sm ml-auto">Jan 12, 2024</span>
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">Tech Giants Opening 2025 Internship Programs</h3>
                 <p className="text-muted-foreground text-sm mb-4">Major technology companies are now accepting applications for their summer internship programs...</p>
@@ -503,7 +502,7 @@ const Home = () => {
               <CardContent className="p-6">
                 <div className="flex items-center mb-3">
                   <span className="bg-accent text-white px-3 py-1 rounded-full text-xs font-medium">FELLOWSHIPS</span>
-                  <span className="text-muted-foreground text-sm ml-auto">Dec 10, 2024</span>
+                  <span className="text-muted-foreground text-sm ml-auto">Dec 10, 2022</span>
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-3">Leadership Fellowship Programs for African Youth</h3>
                 <p className="text-muted-foreground text-sm mb-4">Explore prestigious leadership development fellowships designed specifically for emerging African leaders...</p>
@@ -530,7 +529,7 @@ const Home = () => {
                 <img 
                   src={logoImage} 
                   alt="Haleyouth Foundation Logo" 
-                  className="w-12 h-12 object-contain"
+                  className="w-16 h-16 object-contain"
                 />
                 <div>
                   <h3 className="text-xl font-bold">Haleyouth Foundation</h3>
@@ -542,18 +541,19 @@ const Home = () => {
                 Join us in building a better tomorrow for all.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                <a href="https://www.facebook.com/haleyouthfoundation/" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                   <Facebook className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                <a href="https://x.com/HaleYouth_F" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                   <Twitter className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                <a href="https://linkedin.com/company/haleyouth-foundation" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
                   <Linkedin className="w-4 h-4" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
-                  <Youtube className="w-4 h-4" />
+                <a href="https://www.instagram.com/haleyouthfoundation/" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                  <Instagram className="w-4 h-4" />
                 </a>
+                
               </div>
             </div>
 
@@ -564,17 +564,17 @@ const Home = () => {
                 <div className="flex items-start">
                   <MapPin className="text-primary mr-3 mt-1 w-4 h-4" />
                   <div>
-                    <p className="text-gray-400 text-sm">123 Community Center Street</p>
-                    <p className="text-gray-400 text-sm">Lagos, Nigeria</p>
+                    <p className="text-gray-400 text-sm">Ateba Agassa-Okene</p>
+                    <p className="text-gray-400 text-sm">Kogi State, Nigeria</p>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <Phone className="text-primary mr-3 w-4 h-4" />
-                  <p className="text-gray-400 text-sm">+234 800 123 4567</p>
+                  <p className="text-gray-400 text-sm">+234 813 660 5722</p>
                 </div>
                 <div className="flex items-center">
                   <Mail className="text-primary mr-3 w-4 h-4" />
-                  <p className="text-gray-400 text-sm">info@haleyouthfoundation.org</p>
+                  <p className="text-gray-400 text-sm">haleyouthfoundation@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -596,7 +596,7 @@ const Home = () => {
           {/* Copyright */}
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Haleyouth Foundation. All rights reserved. | 
+              © 2025 Haleyouth Foundation. All rights reserved. | 
               Designed with care for community impact
             </p>
           </div>
