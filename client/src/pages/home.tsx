@@ -43,7 +43,82 @@ import {
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [partnerOffset, setPartnerOffset] = useState(0);
   const observerRef = useRef<IntersectionObserver>();
+  const partnerScrollRef = useRef<HTMLDivElement>(null);
+
+// Hero slider images
+  const heroSlides = [
+    {
+      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080",
+      title: "Community Transformation",
+      subtitle: "Powered by Youth"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080",
+      title: "Youth Support",
+      subtitle: "Powered by Experts"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080",
+      title: "Sustaining Impact",
+      subtitle: "Powered by Public Trust"
+    }
+  ];
+
+
+  // Partners data
+  const partners = [
+    {
+      name: "Scholarly Echo",
+      logo: "/attached_assets/scholarlyecho.png"
+    },
+    {
+      name: "Precious Little Lives Initiative",
+      logo: "/attached_assets/prelli.jpg"
+    },
+    {
+      name: "Scholarly Echo",
+      logo: "/attached_assets/scholarlyecho.png"
+    },
+    {
+      name: "Precious Little Lives Initiative",
+      logo: "/attached_assets/prelli.jpg"
+    },
+    {
+      name: "Scholarly Echo",
+      logo: "https://via.placeholder.com/200x100/FD7E14/FFFFFF?text=PARTNER+5"
+    }
+  ];
+
+  // Auto-cycle hero slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [heroSlides.length]);
+
+  // Auto-scroll partners when more than 3
+  useEffect(() => {
+    if (partners.length > 3) {
+      const interval = setInterval(() => {
+        setPartnerOffset((prev) => {
+          const itemWidth = 268; // 256px width + 12px margin (mx-2 = 8px + 4px spacing)
+          const visibleItems = 3;
+          const totalScrollSteps = partners.length - visibleItems + 1;
+          const maxOffset = (totalScrollSteps - 1) * itemWidth;
+          
+          const nextOffset = prev + itemWidth;
+          return nextOffset > maxOffset ? 0 : nextOffset;
+        });
+      }, 3000); // Scroll every 3 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [partners.length]);
 
   // Counter animation hook
   const useCounter = (target: number, duration = 2000) => {
@@ -227,20 +302,28 @@ const Home = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section with Image Slider */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080')"
-          }}
-        />
+        {/* Image Slider */}
+        <div className="absolute inset-0">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{
+                backgroundImage: `url('${slide.image}')`
+              }}
+            />
+          ))}
+        </div>
         <div className="absolute inset-0 hero-overlay" />
         
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Community Transformation<br />
-            <span className="text-accent">Powered by Youth</span>
+            {heroSlides[currentSlide].title}<br />
+            <span className="text-accent">{heroSlides[currentSlide].subtitle}</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
             Empowering vulnerable communities through youth leadership, education, and skills development.
@@ -251,6 +334,19 @@ const Home = () => {
           >
             Get Involved
           </Button>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full slider-indicator ${
+                index === currentSlide ? 'bg-white' : 'bg-white/50'
+              }`}
+            />
+          ))}
         </div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
@@ -392,7 +488,7 @@ const Home = () => {
                 </p>
                 <Button 
                   className="material-button bg-primary hover:bg-primary/90 text-white w-full material-shadow-1"
-                  onClick={() => window.open('https://forms.google.com/volunteer', '_blank')}
+                  onClick={() => window.open('https://forms.gle/77CT3TDrxgPVkyVm7', '_blank')}
                 >
                   Join As Volunteer
                 </Button>
@@ -411,7 +507,7 @@ const Home = () => {
                 </p>
                 <Button 
                   className="material-button bg-secondary hover:bg-secondary/90 text-white w-full material-shadow-1"
-                  onClick={() => window.open('https://forms.google.com/partnership', '_blank')}
+                  onClick={() => window.open('https://forms.gle/sxkyKwezSLi5tMD26', '_blank')}
                 >
                   Become a Partner
                 </Button>
@@ -425,9 +521,14 @@ const Home = () => {
                   <CreditCard className="text-white w-10 h-10" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Donate</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                {/* <p className="text-muted-foreground mb-6 leading-relaxed">
                   Your financial support helps us expand our programs and reach more young people in need of empowerment and development opportunities.
-                </p>
+                </p> */}
+                <div className="text-muted-foreground mb-6 leading-relaxed">
+                  <div>Bank: Guaranty Trust Bank</div>
+                  <div>Account: 0617009307</div>
+                  <div>Name: Haleyouth Foundation</div>
+                </div>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button className="material-button bg-accent hover:bg-accent/90 text-white w-full material-shadow-1">
@@ -444,6 +545,59 @@ const Home = () => {
                 </Tooltip>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 md:py-24 bg-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Partners</h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Working together with amazing organizations to create lasting impact in our communities.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden max-w-4xl mx-auto">
+            <div 
+              ref={partnerScrollRef}
+              className="flex partner-scroll"
+              style={{ 
+                transform: `translateX(-${partnerOffset}px)`,
+                transition: 'transform 0.8s ease-in-out'
+              }}
+            >
+              {partners.concat(partners.length > 3 ? partners : []).map((partner, index) => (
+                <div
+                  key={`partner-${index}`}
+                  className="flex-shrink-0 w-64 mx-2 flex items-center justify-center"
+                >
+                  <div className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl partner-logo w-full h-24 flex items-center justify-center">
+                    <img
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-105"
+                      title={partner.name}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Scroll indicators if more than 3 partners */}
+            {partners.length > 3 && (
+              <div className="flex justify-center mt-6">
+                {Array.from({ length: partners.length - 2 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-2 h-2 rounded-full mx-1 transition-all duration-300 ${
+                      Math.floor(partnerOffset / 268) === index ? 'bg-white' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -470,8 +624,8 @@ const Home = () => {
                   <span className="bg-primary text-white px-3 py-1 rounded-full text-xs font-medium">SCHOLARSHIPS</span>
                   <span className="text-muted-foreground text-sm ml-auto">Dec 15, 2024</span>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">2025 Global Youth Scholarship Opportunities</h3>
-                <p className="text-muted-foreground text-sm mb-4">Discover fully-funded scholarship programs available for African youth pursuing higher education globally...</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">Youth Career & Scholarship Mentorship</h3>
+                <p className="text-muted-foreground text-sm mb-4">Leveraging the experience of high profile scholars, HLF provides mentorship to increase the potential for African youth pursuing higher education globally...</p>
                 <a href="#" className="text-primary font-medium hover:text-primary/80 transition-colors">Read More →</a>
               </CardContent>
             </Card>
@@ -484,11 +638,11 @@ const Home = () => {
               />
               <CardContent className="p-6">
                 <div className="flex items-center mb-3">
-                  <span className="bg-secondary text-white px-3 py-1 rounded-full text-xs font-medium">INTERNSHIPS</span>
-                  <span className="text-muted-foreground text-sm ml-auto">Jan 12, 2024</span>
+                  <span className="bg-secondary text-white px-3 py-1 rounded-full text-xs font-medium">SKILL AQUISITION</span>
+                  <span className="text-muted-foreground text-sm ml-auto">Jan 12, 2022</span>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">Tech Giants Opening 2025 Internship Programs</h3>
-                <p className="text-muted-foreground text-sm mb-4">Major technology companies are now accepting applications for their summer internship programs...</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">Community Skill and Empowerment programs</h3>
+                <p className="text-muted-foreground text-sm mb-4">Haleyouth Foundation combines local credibility and technical expertise to train youths, women in local community on critical skills...</p>
                 <a href="#" className="text-primary font-medium hover:text-primary/80 transition-colors">Read More →</a>
               </CardContent>
             </Card>
@@ -501,11 +655,11 @@ const Home = () => {
               />
               <CardContent className="p-6">
                 <div className="flex items-center mb-3">
-                  <span className="bg-accent text-white px-3 py-1 rounded-full text-xs font-medium">FELLOWSHIPS</span>
+                  <span className="bg-accent text-white px-3 py-1 rounded-full text-xs font-medium">COMMUNITY PROJECTS</span>
                   <span className="text-muted-foreground text-sm ml-auto">Dec 10, 2022</span>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">Leadership Fellowship Programs for African Youth</h3>
-                <p className="text-muted-foreground text-sm mb-4">Explore prestigious leadership development fellowships designed specifically for emerging African leaders...</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">Sustainable Menstrual Pads for Girls</h3>
+                <p className="text-muted-foreground text-sm mb-4">"Pad a Girl" project is a cost-effective, commmunity rooted intervention that directly seek to address menstrual health gaps...</p>
                 <a href="#" className="text-primary font-medium hover:text-primary/80 transition-colors">Read More →</a>
               </CardContent>
             </Card>

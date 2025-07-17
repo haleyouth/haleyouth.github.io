@@ -92,6 +92,30 @@
   .counter-animation {
     font-variant-numeric: tabular-nums;
   }
+
+  .hero-slider {
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .slider-indicator {
+    transition: all 0.3s ease;
+  }
+  
+  .slider-indicator:hover {
+    transform: scale(1.2);
+  }
+
+    .partner-scroll {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .partner-logo {
+    transition: all 0.3s ease;
+  }
+  
+  .partner-logo:hover {
+    transform: translateY(-5px);
+  }
 }
 
 @layer utilities {
