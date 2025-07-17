@@ -73,25 +73,25 @@ const Home = () => {
   const partners = [
     {
       name: "Scholarly Echo",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/scholarlyecho.png"
-
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/scholarlyecho.png"
+  
     },
     {
       name: "Precious Little Lives Initiative",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/prelli.jpg"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/prelli.jpg"
     
     },
     {
       name: "Scholarly Echo",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/scholarlyecho.png"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/scholarlyecho.png"
     },
     {
       name: "Precious Little Lives Initiative",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/prelli.jpg"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/prelli.jpg"
     },
     {
       name: "Scholarly Echo",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/scholarlyecho.png"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/scholarlyecho.png"
     }
   ];
 
@@ -582,6 +582,11 @@ const Home = () => {
                       alt={partner.name}
                       className="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-105"
                       title={partner.name}
+                       onError={(e) => {
+                        // Fallback to a placeholder if image fails to load
+                        const target = e.target as HTMLImageElement;
+                        target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Crect width='200' height='100' fill='%23f8f9fa' stroke='%23dee2e6' stroke-width='2'/%3E%3Ctext x='100' y='50' font-family='Arial' font-size='12' fill='%236c757d' text-anchor='middle' dominant-baseline='middle'%3E${partner.name}%3C/text%3E%3C/svg%3E`;
+                      }}
                     />
                   </div>
                 </div>
