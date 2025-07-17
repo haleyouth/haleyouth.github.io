@@ -37,7 +37,8 @@ import {
   Twitter,
   Linkedin,
   Youtube,
-  Instagram
+  Instagram,
+  GitCompareIcon
 } from "lucide-react";
 
 const Home = () => {
@@ -72,23 +73,25 @@ const Home = () => {
   const partners = [
     {
       name: "Scholarly Echo",
-      logo: "/attached_assets/scholarlyecho.png"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/scholarlyecho.png"
+
     },
     {
       name: "Precious Little Lives Initiative",
-      logo: "/attached_assets/prelli.jpg"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/prelli.jpg"
+    
     },
     {
       name: "Scholarly Echo",
-      logo: "/attached_assets/scholarlyecho.png"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/scholarlyecho.png"
     },
     {
       name: "Precious Little Lives Initiative",
-      logo: "/attached_assets/prelli.jpg"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/prelli.jpg"
     },
     {
       name: "Scholarly Echo",
-      logo: "https://via.placeholder.com/200x100/FD7E14/FFFFFF?text=PARTNER+5"
+      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/assets/scholarlyecho.png"
     }
   ];
 
