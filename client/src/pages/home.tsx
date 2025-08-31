@@ -73,25 +73,23 @@ const Home = () => {
   const partners = [
     {
       name: "Scholarly Echo",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/scholarlyecho.png"
-  
+      logo: "/attached_assets/scholarlyecho.png"
     },
     {
       name: "Precious Little Lives Initiative",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/prelli.jpg"
-    
+      logo: "/attached_assets/prelli.jpg"
     },
     {
       name: "Scholarly Echo",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/scholarlyecho.png"
+      logo: "/attached_assets/scholarlyecho.png"
     },
     {
       name: "Precious Little Lives Initiative",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/prelli.jpg"
+      logo: "/attached_assets/prelli.jpg"
     },
     {
       name: "Scholarly Echo",
-      logo: "https://github.com/haleyouth/haleyouth.github.io/blob/main/attached_assets/scholarlyecho.png"
+      logo: "/attached_assets/scholarlyecho.png"
     }
   ];
 
@@ -576,11 +574,11 @@ const Home = () => {
                   key={`partner-${index}`}
                   className="flex-shrink-0 w-64 mx-2 flex items-center justify-center"
                 >
-                  <div className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl partner-logo w-full h-24 flex items-center justify-center">
+                  <div className="bg-transparent rounded-lg p-4 partner-logo w-full h-24 flex items-center justify-center transition-all duration-300 hover:scale-110">
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-105"
+                      className="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-125 filter brightness-0 invert hover:brightness-100 hover:invert-0"
                       title={partner.name}
                        onError={(e) => {
                         // Fallback to a placeholder if image fails to load
