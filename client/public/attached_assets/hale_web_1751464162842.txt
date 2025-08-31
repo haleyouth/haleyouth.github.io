@@ -1,0 +1,76 @@
+Build a single-page React website for the Haleyouth Foundation using Material UI (MUI) components. The site should reflect bold, credible, and professional branding, tailored to attract community engagement, showcase impact, and appeal to potential donors or partners. It must be mobile-responsive and include smooth scrolling navigation.
+
+Page Structure (Sectioned):
+1. Header (Navbar)
+Sticky top navigation bar
+
+Logo and site name: Haleyouth Foundation
+
+Menu items: Home, Mission, Programs, Impact, Get Involved, Contact
+
+2. Hero Section
+A bold, full-screen banner image with overlay text
+
+Text headline: "Community Transformation Powered by Youth"
+
+Subtext: "Empowering vulnerable communities through youth leadership, education, and skills development."
+
+Call-to-action button: Get Involved
+
+3. Mission & Vision Section
+2-column layout (Mission | Vision)
+
+Use Material UI Cards or Paper elements
+
+Include the foundation's mission and vision from the concept note
+
+4. Our Programs (Objectives & Activities)
+Grid or timeline layout showing 14 program focus areas (e.g., STEM Camps, Orphan Care, Skill Acquisition, etc.)
+
+Short descriptions per item using MUI cards or expansion panels
+
+5. Impact Statistics
+Section with animated counters for metrics like:
+
++500 Youth Trained
+
++100 Orphans Supported
+
++20 Community Projects Completed
+
++15 Partner Organizations
+
+6. Get Involved
+Showcase ways to participate:
+
+Volunteer
+
+Donate
+
+Partner
+
+Include buttons and short descriptions
+
+7. Career Blog Preview (Optional)
+Preview section showing links to scholarships, internships, etc.
+
+Grid layout using placeholder blog cards
+
+8. Footer
+Include contact details, social links, copyright
+
+Add links to Privacy Policy and Terms of Service
+
+Design & Styling
+Use Material UI themes with bold fonts, card elevations, primary color accents
+
+Maintain consistent spacing and section separation
+
+Responsive design for mobile and tablet view
+
+Additional Requirements:
+Use meaningful icons from Material Icons
+
+Implement smooth scrolling for navbar links
+
+Use dummy JSON or static text where backend data is not yet available
